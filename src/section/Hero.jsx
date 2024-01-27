@@ -1,0 +1,53 @@
+import React from 'react'
+import Buttn from '../components/Buttn'
+import { arrowRight, chevronLeft } from '../assets/icons'
+import { bigShoe3 } from '../assets/images'
+import { bigShoe1 } from '../assets/images'
+import { bigShoe2 } from '../assets/images'
+import ShoeCard from '../components/ShoeCard'
+import { useState } from 'react'
+const Hero = () => {
+  // Statistics
+  const items = [
+    {value:"1k+",label:"Brands"},
+    {value:"500+",label:"Shops"},
+    {value:"250k+",label:"Customers"}
+]
+
+// Show Shoes
+  const showShoes = [
+    {imgU:bigShoe1},
+    {imgU:bigShoe2},
+    {imgU:bigShoe3}
+    
+  ]
+
+  // Click to chane image
+  const [shoeShown,setShoeImg] = useState(bigShoe1);
+  return (
+    <section id="home" className="w-full flex xl:flex-row flex-col justify-center min-h-screen gap-10 max-container border-2 p-2">
+      {/* On large devices takes 2 fifths of the screen */}
+      <div className='relative xl:w-2/5 relative flex flex-col justify-center items-start w-full max-xl:padding-x pt-28 '>
+        <p className='text-xl font-montserrat text-coral-red'>Our Summer Collections</p>
+        <h1 className='mt-10 font-palanquin text-8xl max-sm:text-[64px] max-sm:leading-[2] font-bold'>
+          <span className='xl:bg-white xl:whitespace-nowrap relative z-10 pr-10'>The New Arrival</span>
+          <br />
+          <span className='mt-3 text-coral-red inline-block'>Nike</span> Shoes
+        </h1>
+        <p className='text-slate-gray text-lg mt-6b mb-14 leading-8 sm:max-w-sm'>Discover stylish Nike arrival, quality comfort, and innovation for your active life</p>
+        <Buttn label="Shop Now" iconLabel={arrowRight}></Buttn>
+        <div className="flex flex-wrap w-full mt-20 gap-16 justify-start item-start max-sm:flex-col" >
+          {items.map((item)=> <div key={item.label}><p className='font-bold text-4xl font-palanquin'>{item.value}</p><p className='leading-7 font-montserrat text-slate-gray'>{item.label}</p></div>)}
+        </div>
+      </div>
+      <div className='relative flex-1 flex justify-center items-center xl:min-h-screen max-xl:py-40 bg-primary bg-hero bg-cover bg-center'>
+        <img src={shoeShown} alt="shoeCollection" className='object-contain z-10 relative' width={610} height={500} />
+        <div>
+          {showShoes.map((item)=><div key={item.imgU} className='flex justify-center mt-2 bg-slate-gray rounded-xl p-2 cursor-pointer'><img src={item.imgU} alt={item.imgU} /></div>)}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default Hero
